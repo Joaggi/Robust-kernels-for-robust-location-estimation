@@ -1,0 +1,5 @@
+cd /home/jagallegom/Robustes/ATT/NMF/
+python nmf_Experiment.py
+
+cd /home/jagallegom/Robustes/ATT/NMF/
+matlab -r nmf_experimentATT.py

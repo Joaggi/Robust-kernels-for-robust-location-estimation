@@ -1,0 +1,5 @@
+cd /home/jagallegom/Robustes/ATT/KernelKMeans/
+python kernelkmeans_Experiment.py
+
+cd /home/jagallegom/Robustes/ATT/KernelKMeans/
+matlab -r kkmeansmatlab_experimentATT.m

@@ -1,0 +1,2 @@
+cd /home/jagallegom/Robustes/AR/Kernelconvexnmf/
+matlab -r kernelconvexnmf_experimentAR.m

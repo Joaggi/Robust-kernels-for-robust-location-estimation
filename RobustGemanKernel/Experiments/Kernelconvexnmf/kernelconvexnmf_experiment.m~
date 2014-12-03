@@ -1,0 +1,59 @@
+function correct = kernelconvexnmf_experiment(filedata,dataset,datalabels)
+
+addpath(filedata);
+load(dataset)
+load(datalabels)
+load('parameters')
+
+% addpath 'G:/Dropbox/Universidad/Machine Learning/Algorithms/Matlab';
+% 
+% addpath 'G:/Dropbox/Universidad/Machine Learning/Algorithms/Matlab/nmfv1_4';
+
+addpath '/home/jagallegom/Algorithms/Matlab';
+addpath '/home/jagallegom/Algorithms/Matlab/nmfv1_4';
+
+k = length(unique(labels))
+X= L1norm(data);
+
+purityVec = zeros(epocs*21,1);
+clusteringAccuracyVec = zeros(epocs*21,1);
+nmiVec = zeros(epocs*21,1);
+labels_total = zeros(epocs*21,length(labels));
+
+purityMeanVec = zeros(21,1);
+clusteringAccuracyMeanVec = zeros(21,1);
+nmiMeanVec = zeros(21,1);
+
+option.kernel = 'rbf'
+
+vect = [-1,-2,-3,-4,-5,-6,-7,-8,-9,-10,0,1,2,3,4,5,6,7,8,9,10];
+%vect = [-3];
+
+cont = 1
+
+
+for l = 1:1
+    aux = cont
+    option.param = 2^vect(l);
+    for i=1:epocs
+        try
+            labels_pred = kernelconvexnmfCluster(X',k,option);
+            labels_total(cont,:) = labels_pred
+            purityVec(cont) = purity(labels,labels_pred)
+            clusteringAccuracyVec(cont) = clusteringaccuracy(labels,labels_pred)
+            nmiVec(cont) = nmi(labels,labels_pred)
+        catch
+            purityVec(cont) = 0;
+            nmiVec(cont) = 0;
+            clusteringAccuracyVec(cont) = 0;
+
+        end
+        cont = cont + 1
+    end
+    purityMeanVec(l) = mean(purityVec(aux:cont-1))
+    clusteringAccuracyMeanVec(l) = mean(clusteringAccuracyVec(aux:cont-1))
+    nmiMeanVec(l) = mean(nmiVec(aux:cont-1))
+    
+end
+save results clusteringAccuracyVec purityVec nmiVec purityMeanVec clusteringAccuracyMeanVec nmiMeanVec
+end

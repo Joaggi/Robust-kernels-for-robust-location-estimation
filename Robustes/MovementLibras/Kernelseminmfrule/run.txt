@@ -1,0 +1,2 @@
+cd /home/jagallegom/Robustes/MovementLibras/Kernelseminmfrule/
+matlab -r kernelseminmfrule_experimentMovement.m

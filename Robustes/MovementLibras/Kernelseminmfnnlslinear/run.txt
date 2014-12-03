@@ -1,0 +1,2 @@
+cd /home/jagallegom/Robustes/MovementLibras/Kernelseminmfnnlslinear/
+matlab -r kernelseminmfnnls_experimentMovement.m

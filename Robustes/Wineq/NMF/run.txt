@@ -1,0 +1,5 @@
+cd /home/jagallegom/Robustes/Wineq/NMF/
+python nmf_Experiment.py
+
+cd /home/jagallegom/Robustes/Wineq/NMF/
+matlab -r nmf_experimentWineq.m
