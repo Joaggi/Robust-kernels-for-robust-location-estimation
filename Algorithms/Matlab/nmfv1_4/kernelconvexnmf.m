@@ -124,21 +124,28 @@ end
 
 switch option.initialization
     case 'kmeans'
-        inx=kmeans(X',k,'Emptyaction','singleton'); % k-mean clustering, get idx=[1,1,2,2,1,3,3,1,2,3]
+        inx=kmeans(X',k,'Emptyaction','drop'); % k-mean clustering, get idx=[1,1,2,2,1,3,3,1,2,3]
         H=(inx(:)*ones(1,k)-ones(c,1)*cumsum(ones(1,k)))==0; % obtain logical matrix [1,0,0;1,0,0;0,1,0;0,1,0;1,0,0;0,0,1;...]
-        G=H+unifrnd(0,0.2,c,k);
+        G=H+0.2;
         D=diag(1./sum(H));
-        W=(H+unifrnd(0,0.2,c,k))*D;
+        W=(H+0.2)*D;
     case 'random'
-        G=rand(c,k)+unifrnd(0,0.2,c,k);
-        W=rand(c,k)+unifrnd(0,0.2,c,k);
+%         G=rand(c,k)+unifrnd(0,0.2,c,k);
+%         W=rand(c,k)+unifrnd(0,0.2,c,k);
+         G=rand(c,k);
+         W=rand(c,k);
     case 'kkmeans'
         addpath('../')
         [inx,~] = knkmeans(Ak, k);
         H=(inx(:)*ones(1,k)-ones(c,1)*cumsum(ones(1,k)))==0; % obtain logical matrix [1,0,0;1,0,0;0,1,0;0,1,0;1,0,0;0,0,1;...]
-        G=H+unifrnd(0,0.2,c,k);
+%         G=H+unifrnd(0,0.2,c,k);
+        G=H+0.2;
         D=diag(1./sum(H));
-        W=(H+unifrnd(0,0.2,c,k))*D;
+        W=(H+0.2)*D;
+%         W=(H+unifrnd(0,0.2,c,k))*D;
+    case 'deterministic'
+         G=ones(c,k)*0.2;
+         W=ones(c,k)*0.2;        
 end
 
 XfitPrevious=Inf;

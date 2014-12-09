@@ -1,9 +1,5 @@
 function correct = nmf_experiment(filedata,dataset,datalabels,nameresults)
 
-addpath '../../../Algorithms/Matlab';
-addpath '../../../Algorithms/Matlab/nmfv1_4';
-addpath '../../../Datasets';
-
 if(nargin < 4)
     nameresults = 'results';
 end
@@ -15,6 +11,12 @@ load(datalabels)
 load('parameters')
 
 epocs = 100;
+
+addpath 'G:/Dropbox/Universidad/Machine Learning/Algorithms/Matlab';
+addpath 'G:/Dropbox/Universidad/Machine Learning/Algorithms/Matlab/nmfv1_4';
+
+% addpath '/home/jagallegom/Algorithms/Matlab';
+% addpath '/home/jagallegom/Algorithms/Matlab/nmfv1_4';
 
 k = length(unique(labels));
 %X= L1norm(data);
@@ -31,15 +33,17 @@ cont = 1
 
 option.reorder=false;
 option.algorithm='nmfrule';
-option.iterations=300;
-option.iter=300;
+option.iterations=500;
+option.iter=500;
 option.distance = 'ls';
 option.dis = false;
 
 biasAux = Inf;
     for i=1:epocs
+            addpath 'G:/Dropbox/Universidad/Machine Learning/Algorithms/Matlab/nmfv1_4';
             k = length(unique(labels));
             [labelsPred,~,~,Yout,~,~,~] = nmfAlgorithm(X,k,option);
+            addpath 'G:/Dropbox/Universidad/Machine Learning/Algorithms/Matlab';
             vectorCentroids(:,:,i) = get_centroids(labelsPred,X,Yout);
             vectorCentroids(:,:,i) = geneticAlgorithm(realCentroids,vectorCentroids(:,:,i));
             biasVecInitial(i) = sum(sum(abs(vectorCentroids(:,:,i) - realCentroids)));

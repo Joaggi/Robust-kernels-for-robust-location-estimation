@@ -1,9 +1,9 @@
 
 
-addpath 'G:/Dropbox/Universidad/Machine Learning/Algorithms/Matlab';
-addpath 'G:/Dropbox/Universidad/Machine Learning/UniformContamination/Experiments/NMF';
+addpath '../../../Algorithms/Matlab';
+addpath '../../../UniformContamination/Experiments/NMF';
 
-nmf_experiment('G:/Dropbox/Universidad/Machine Learning/UniformContamination/jaffe','jaffe','jaffe_labels','Experimento 01122014 AG')
+nmf_experiment('../../../Datasets','jaffe','jaffe',strcat('Experimento ',date))
 
 % addpath '/home/jagallegom/Algorithms/Matlab';
 % addpath '/home/jagallegom/Robustes/Experiments/NNMF';

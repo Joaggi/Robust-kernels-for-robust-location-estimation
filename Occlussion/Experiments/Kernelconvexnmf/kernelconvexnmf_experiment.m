@@ -8,7 +8,7 @@ load(dataset)
 load(datalabels)
 load('parameters')
 % 
-epocs=50
+epocs=20
 
 
 k = length(unique(labels));
@@ -26,7 +26,7 @@ cont = 1
 
 
 option.kernel = 'rbf';
-option.iter=100;
+option.iter=500;
 option.dis=1;
 option.residual=1e-4;
 option.tof=1e-4;

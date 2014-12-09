@@ -1,5 +1,0 @@
-cd /home/jagallegom/Robustes/jaffe/KernelKMeans/
-python kernelkmeans_Experiment.py
-
-cd /home/jagallegom/Robustes/jaffe/KernelKMeans/
-matlab -r kkmeansmatlab_experimentJaffe.m

@@ -1,5 +1,9 @@
 function correct = kernelconvexnmf_experiment(filedata,dataset,datalabels,nameresults)
 
+addpath '../../../Algorithms/Matlab';
+addpath '../../../Algorithms/Matlab/nmfv1_4';
+addpath '../../../Datasets';
+
 if(nargin < 4)
     nameresults = 'results'
 end
@@ -9,16 +13,17 @@ load(dataset)
 load(datalabels)
 load('parameters')
 % 
-addpath '../../../Algorithms/Matlab';
-addpath '../../../Algorithms/Matlab/nmfv1_4';
+
 
 
 k = length(unique(labels));
-%X= L1norm(data);
-X= normalizeByRange(data,1);
+X= data;
+X= L1norm(data);
+% X = X'
+% X= normalizeByRange(data,1);
 
 cont = 1
-vect = [-1,-2,-3,-4,-5,-6,-7,-8,-9,-10,0,1,2,3,4,5,6,7,8,9,10];
+vect = [-10];
 % vect = [-7]
 
 purityVec = zeros(epocs*length(vect),1);
@@ -39,7 +44,7 @@ option.iter=500;
 option.dis=1;
 option.residual=1e-6;
 option.tof=1e-6;
-
+option.initialization='random';
 try
     load(nameresults)
     cont = (l-1)*(epocs)+1
