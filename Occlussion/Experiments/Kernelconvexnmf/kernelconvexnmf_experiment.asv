@@ -1,0 +1,114 @@
+function correct = kernelconvexnmf_experiment(filedata,dataset,datalabels,nameresults)
+
+addpath '../../../Algorithms/Matlab';
+addpath '../../../Algorithms/Matlab/nmfv1_4';
+addpath '../../../Datasets';
+addpath(filedata);
+load(dataset)
+load(datalabels)
+
+% 
+epocs=20
+
+
+k = length(unique(labels));
+X= data_real;
+% [X,minimo,maximo]= normalizeByRange(data,1);
+%  X= L1norm(data);
+
+cont = 1
+vect = [-1,-2,-3,-4,-5,-6,-7,-8,-9,-10,0,1,2,3,4,5,6,7,8,9,10];
+%vect = [-9]
+
+porcentajeContaminacion= 30
+[numContamination,clusteringAccuracyVec,clusteringAccuracyMeanVec,clusteringAccuracySdVec] =   definicionVariables(X,vect,epocs,porcentajeContaminacion)
+cont = 1
+
+
+option.kernel = 'rbf';
+option.iter=500;
+option.dis=1;
+option.residual=1e-4;
+option.tof=1e-4;
+option.initialization = 'kkmeans';
+
+
+try
+    load(nameresults);
+    name = 1;
+catch
+    name = 0;
+    j=1;
+end
+
+for l = 1:length(vect)
+    aux = cont
+    option.param = 2^vect(l);
+    for i=1:epocs       
+            [labelsPred,~,~,Yout,~,~,~] = kernelCNMFAlgorithm(X,k,option);
+            [result,~] = ClusteringMeasure(labels,labels_pred)
+            clusteringAccuracyVec(cont) = result(1);
+            cont = cont + 1
+    end
+    clusteringAccuracyMeanVec(l) = mean(clusteringAccuracyVec(aux:cont-1));
+    clusteringAccuracySdVec(l) = std(clusteringAccuracyVec(aux:cont-1));
+end
+
+
+[~, posMin] = max(clusteringAccuracyMeanVec);
+s = vect(posMin);
+
+option.param = 2^vect(posMin);
+
+while(j<=porcentajeContaminacion)
+        booleanVectorCentroids = ones(1,epocs);
+        
+        XwithContamination = [X;vectorContamination(1:floor(size(X,1)*(j/100)),:)];
+        for i=1:epocs      
+            try
+                k = length(unique(labels));
+                [~,~,~,Yout,~,~,~] = kernelCNMFAlgorithm(XwithContamination,k,option);
+                vectorCentroidsContamination(:,:,i) = (preW(XwithContamination', Yout', 2^s,20))';
+                vectorCentroidsContamination(:,:,i) = geneticAlgorithm(centroidInitial,vectorCentroidsContamination(:,:,i));
+            catch
+                sprintf('Ha ocurrido un error.');
+                booleanVectorCentroids(i) = 0;
+            end
+        end
+        
+        centroidContamination = mean(vectorCentroidsContamination(:,:,booleanVectorCentroids==1),3);
+        biasContamination(j) =  sum(sum(abs(centroidContamination - centroidInitial)));
+        biasGlobal(j) = sum(sum(abs(centroidContamination - realCentroids)));
+        j=j+1
+        save(nameresults,'vectorCentroids','biasInitial','bias','realCentroids','X','vectorContamination','biasContamination','vectorCentroidsContamination','j','centroidInitial','s','labelsReal','option')
+end
+
+
+save(nameresults,'vectorCentroids','biasInitial','bias','realCentroids','X','vectorContamination','biasContamination','biasGlobal','vectorCentroidsContamination','j','centroidInitial','s','labelsReal','option')
+end
+
+
+function [numContamination,clusteringAccuracyVec,clusteringAccuracyMeanVec,clusteringAccuracySdVec] =   definicionVariables(X,vect,epocs,porcentajeContaminacion)
+    numContamination = floor(porcentajeContaminacion/100*size(X,1));
+    clusteringAccuracyVec = zeros(epocs*length(vect),1);
+    clusteringAccuracyMeanVec = zeros(length(vect),1);
+    clusteringAccuracySdVec = zeros(length(vect),1);
+end
+
+
+
+
+function [labelsPred,Xout,Aout,Yout,numIter,tElapsed,finalResidual] = kernelCNMFAlgorithm(X,k,option)
+            [labelsPred,Xout,Aout,Yout,numIter,tElapsed,finalResidual] = kernelconvexnmfCluster(X',k,option);
+            contRecur = 0;
+            while length(unique(labelsPred)) ~= k
+                [labelsPred,Xout,Aout,Yout,numIter,tElapsed,finalResidual] = kernelconvexnmfCluster(X',k,option);
+                clear energy;
+                if contRecur >15
+                    break
+                end
+                contRecur  = contRecur +1;
+            end
+end
+
+

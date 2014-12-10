@@ -23,7 +23,7 @@ addpath 'G:/Dropbox/Universidad/Machine Learning/Algorithms/Matlab/nmfv1_4';
 
 k = length(unique(labels));
 %X= L1norm(data);
-X = data
+% X = data
 X= normalizeByRange(data,1);
 
 cont = 1

@@ -1,9 +1,10 @@
 
 
-addpath 'G:/Dropbox/Universidad/Machine Learning/Algorithms/Matlab';
-addpath 'G:/Dropbox/Universidad/Machine Learning/RobustAndrewsKernel/Experiments/Kernelconvexnmf';
+addpath '../../../Algorithms/Matlab';
+addpath '../../../RobustAndrewsKernel/Experiments/Kernelconvexnmf';
+addpath '../../../Datasets';
 
-kernelconvexnmf_experiment('G:/Dropbox/Universidad/Machine Learning/RobustAndrewsKernel/AR','ardataset','arlabels','Experimento 20112014')
+kernelconvexnmf_experiment('../../../RobustAndrewsKernel/AR','AR','AR','Experimento 20112014')
 
 % addpath '/home/jagallegom/Algorithms/Matlab';
 % addpath '/home/jagallegom/Robustes/Experiments/Kernelconvexnmf';
