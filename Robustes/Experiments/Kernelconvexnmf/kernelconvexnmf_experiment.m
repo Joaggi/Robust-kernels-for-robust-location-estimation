@@ -1,4 +1,4 @@
-function correct = kernelconvexnmf_experiment(filedata,dataset,datalabels,nameresults)
+function correct = kernelconvexnmf_experiment(filedata,dataset,datalabels,vect,nameresults)
 
 addpath '../../../Algorithms/Matlab';
 addpath '../../../Algorithms/Matlab/nmfv1_4';
@@ -18,13 +18,12 @@ load('parameters')
 
 k = length(unique(labels));
 X= data;
-X= L1norm(data);
+% X= L1norm(data);
 % X = X'
 % X= normalizeByRange(data,1);
 
 cont = 1
-vect = [-10];
-% vect = [-7]
+
 
 purityVec = zeros(epocs*length(vect),1);
 clusteringAccuracyVec = zeros(epocs*length(vect),1);
@@ -40,7 +39,7 @@ clusteringAccuracySdVec = zeros(length(vect),1);
 nmiSdVec = zeros(length(vect),1);
 
 option.kernel = 'rbf'
-option.iter=500;
+option.iter=1000;
 option.dis=1;
 option.residual=1e-6;
 option.tof=1e-6;
@@ -57,7 +56,9 @@ while(l<=length(vect))
     aux = cont
     option.param = 2^vect(l);
     for i=1:epocs
+            tic
             labels_pred = kernelconvexnmfCluster(X',k,option);
+            toc
             aux2 = 1;
             while length(unique(labels_pred)) ~= k
                 labels_pred = kernelconvexnmfCluster(X',k,option);

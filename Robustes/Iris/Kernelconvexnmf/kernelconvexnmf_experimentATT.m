@@ -1,7 +1,7 @@
 
 
 addpath '../../../Algorithms/Matlab';
-addpath '../../../Robustes/Experiments/Kernelconvexnmflinear';
+addpath '../../../Robustes/Experiments/Kernelconvexnmf';
 vect = [1]
 kernelconvexnmf_experiment('../../../Robustes/Iris','iris','iris',vect,'16102014')
 
