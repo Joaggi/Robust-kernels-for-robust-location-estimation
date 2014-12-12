@@ -8,7 +8,7 @@ load(dataset)
 load(datalabels)
 
 % 
-epocs=6;
+epocs=20;
 
 
 k = length(unique(labels));
@@ -18,8 +18,6 @@ X= data_real;
 
 porcentajeContaminacion= 30;
 [numContamination,clusteringAccuracyVec,clusteringAccuracyMeanVec,clusteringAccuracySdVec] =   definicionVariables(X,vect,epocs,porcentajeContaminacion)
-
-size(clusteringAccuracyVec)
 
 option.kernel = 'rbf';
 option.iter=500;
