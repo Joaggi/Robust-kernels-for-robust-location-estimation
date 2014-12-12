@@ -1,7 +1,6 @@
 #Written by Joseph Gallego Based on Ding's Paper: Convex and Semi-Nonnegative Matrix Factorizations
-#This function finds the Matrix Factors W and H of K = KWH Where:
-#     K is a kernel matrix of size NxN and K has a positive part denoted XXP and a negative part denoted XXN
-#     W0 and H0 are initializations for the matrix factors
+#This function finds the Matrix Factors W and G of K = KWG Where:
+#     K is a kernel matrix of size NxN and K has a positive part denoted Ap and a negative part denoted An
 
 #X is a features by samples matrix
 import time
@@ -97,7 +96,7 @@ def test():
     option['residual'] = 2**-20
     option['kernel'] = 'rbf'
     option['initialization'] = 'random'
-    option['k'] = 3
+    option['k'] = 100
     option['dis'] = False
     start = time.clock()
     print clusterKCNMF(np.transpose(X),option)
