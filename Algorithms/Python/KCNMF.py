@@ -8,9 +8,8 @@ import time
 import os, sys
 os.chdir(os.pardir)
 os.chdir(os.pardir)
-
+sys.path.append(os.getcwd())
 import mkl
-print mkl.get_max_threads()
 import numpy as np
 from numba import double, jit
 import scipy.io as sio
