@@ -20,7 +20,7 @@ porcentajeContaminacion= 30;
 [numContamination,clusteringAccuracyVec,clusteringAccuracyMeanVec,clusteringAccuracySdVec] =   definicionVariables(X,vect,epocs,porcentajeContaminacion)
 
 option.kernel = 'rbf';
-option.iter=500;
+option.iter=1000;
 option.dis=1;
 option.residual=1e-4;
 option.tof=1e-4;
@@ -52,6 +52,7 @@ end
 s = vect(posMin);
 
 option.param = 2^vect(posMin);
+[numContamination,clusteringAccuracyVec,clusteringAccuracyMeanVec,clusteringAccuracySdVec] =   definicionVariables(X,vect,epocs,porcentajeContaminacion)
 
 cont = 1;
 while(j<=porcentajeContaminacion)

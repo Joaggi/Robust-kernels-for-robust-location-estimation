@@ -10,7 +10,6 @@ os.chdir(os.pardir)
 sys.path.append(os.getcwd())
 import mkl
 import numpy as np
-from numba import double, jit
 import scipy.io as sio
 from Algorithms.Python.computeKernelMatrix import computeKernelMatrix
 from numbapro import autojit
@@ -60,7 +59,7 @@ def KCNMF(X,option):
                 finalResidual = curRes
     return [A,Y,numIter,finalResidual]
 
-@autojit(target="cpu")
+@autojit(target="gpu")
 def __operations(Ap,An,G,W):
     ApW = np.dot(Ap,W)
     AnW = np.dot(An,W)
@@ -70,13 +69,13 @@ def __operations(Ap,An,G,W):
     W = np.multiply(W,np.sqrt(np.divide((np.dot(Ap,G)+ np.dot(AnW,GtG)) , (np.dot(An,G)+np.dot(ApW,GtG)))))   
     return Ap,An,G,W
     
-@autojit(target="cpu")    
+@autojit(target="gpu")    
 def getPossitiveNegative(Ak):
     Ap = (np.abs(Ak) + Ak) / 2.
     An = (np.abs(Ak) - Ak) / 2.
     return Ap,An
 
-@autojit(target="cpu")
+@autojit(target="gpu")
 def initialization(X,c,param):
     if param['initialization'] == 'random':
          G=np.random.random((c,param['k']))
