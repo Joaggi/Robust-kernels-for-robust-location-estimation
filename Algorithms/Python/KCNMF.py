@@ -8,11 +8,11 @@ import os, sys
 os.chdir(os.pardir)
 os.chdir(os.pardir)
 sys.path.append(os.getcwd())
-import mkl
+#import mkl
 import numpy as np
 import scipy.io as sio
 from Algorithms.Python.computeKernelMatrix import computeKernelMatrix
-from numbapro import autojit
+#from numbapro import autojit
 
 #if len(sys.argv) < 5:
 #  print 'Use: nmfCoding.py Initial H, Inital W, Positive part of kernel, Negative part of kernel, iterations, '
@@ -89,15 +89,16 @@ def test():
     X = sio.loadmat('Datasets/AR.mat')['data']
     option = {}
     option['epocs']  = 1000
-    option['param']  = 2
+    option['param']  = 2**8
     option['tof']  = 2**-20
     option['residual'] = 2**-20
     option['kernel'] = 'rbf'
     option['initialization'] = 'random'
     option['k'] = 100
-    option['dis'] = False
+    option['dis'] = True
     start = time.clock()
-    print clusterKCNMF(np.transpose(X),option)
+    labels = clusterKCNMF(np.transpose(X),option)
     print (time.clock() - start)
+    sio.savemat('labels',{'labels':labels})
     
 test()

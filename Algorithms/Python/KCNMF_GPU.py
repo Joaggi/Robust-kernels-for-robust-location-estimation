@@ -97,9 +97,10 @@ def test():
     option['kernel'] = 'rbf'
     option['initialization'] = 'random'
     option['k'] = 100
-    option['dis'] = False
+    option['dis'] = True
     start = time.clock()
-    print clusterKCNMF(np.transpose(X),option)
+    labels = clusterKCNMF(np.transpose(X),option)
     print (time.clock() - start)
+    sio.savemat('labels',{'labels':labels})
     
 test()
