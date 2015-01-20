@@ -1,0 +1,35 @@
+addpath 'G:/Dropbox/Universidad/Machine Learning/Algorithms/Matlab';
+addpath 'G:/Dropbox/Universidad/Machine Learning/Robustes/Abalone';
+load('abalone')
+load('abalone_labels')
+load('parameters')
+
+k = max(size(unique(labels)));
+X= L1norm(data);
+
+purityvec = zeros(epocs,1);
+clusteringAccuracy = zeros(epocs,1);
+nmivec = zeros(epocs,1);
+
+for l = 0:3
+    for i=1:epocs/4
+        try
+            i
+            [F,G] = variablesL21NMF(X,k);
+            G = G';
+            E = X';
+            fprintf('Legue')
+            [labels_pred] = L21NMF(E,F,G,10^-l);
+
+            purityvec(i) = purity(labels,labels_pred);
+            clusteringAccuracy(i) = clusteringaccuracy(labels,labels_pred);
+            nmivec(i) = nmi(labels,labels_pred);
+        catch
+            purityvec(i) = 0;
+            nmivec(i) = 0;
+            clusteringAccuracy(i) = 0;
+
+        end
+    end
+end
+save results clusteringAccuracy purityvec nmivec

@@ -5,7 +5,7 @@ if size(Y,2) ~= 1
 end;
 if size(predY,2) ~= 1
     predY = predY';
-end;
+zend;
 
 n = length(Y);
 

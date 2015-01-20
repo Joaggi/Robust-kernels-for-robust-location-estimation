@@ -51,6 +51,8 @@ def KCNMF(X,option):
         if i % 10 == 0 or i+1 == option['epocs']:
             if option['dis']:
                 print 'Iterating >>>>>> ' + str(i)
+		print G
+		print W
             XfitThis = np.dot(np.dot(Ak , A) , Y)
             fitRes = np.linalg.norm(XfitPrevious-XfitThis,ord= 'fro')
             XfitPrevious=XfitThis
@@ -101,6 +103,6 @@ def test():
     start = time.clock()
     labels = clusterKCNMF(np.transpose(X),option)
     print (time.clock() - start)
-    sio.savemat('labels',{'labels':labels})
+    sio.savemat('labelsgpu',{'labels':labels})
     
 test()
