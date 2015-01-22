@@ -6,15 +6,18 @@ import semantic_methods_toolkit.python.dataset_factory as dataset_factory
 from semantic_methods_toolkit.python.cnmf_experiment import CnmfExperiment
 from semantic_methods_toolkit.python.contamination_experiment import contamination_experiment
 from semantic_methods_toolkit.python.generate_logarithm_vector_kernel import GenerateLogarithmVectorKernel
+from semantic_methods_toolkit.python.preprocess_data.normalize_by_range import NormalizeByRange
 
-data,labels = dataset_factory.dataset_factory('../../../../dataset/jaffe_occlusion_contamination.mat',options = {'data': 'data_real','labels':'labels'})
-data_contamination,labels = dataset_factory.dataset_factory('../../../../dataset/jaffe_occlusion_contamination.mat',options = {'data': 'data_contamination','labels':'labels'})
+
+data,labels = dataset_factory.dataset_factory('../../dataset/jaffe_occlusion_contamination.mat',options = {'data': 'data_real','labels':'labels'})
+data_contamination,labels = dataset_factory.dataset_factory('../../dataset/jaffe_occlusion_contamination.mat',options = {'data': 'data_contamination','labels':'labels'})
 
 import numpy as np
 
 print data
 k = np.unique(labels).size
 
+data = NormalizeByRange(data,axis=0)   
 
 vect = GenerateLogarithmVectorKernel(data)
 
@@ -74,7 +77,8 @@ option = {
 
 cnmf_experiment = CnmfExperiment(data,option)
       
-results_performance, last_results_performance = contamination_experiment(data,data_contamination, labels, cnmf_experiment, options([1,2,3]) , option)
+results_performance, last_results_performance , options_results_performance,   results_performance_tunning = contamination_experiment(
+    data,data_contamination, labels, cnmf_experiment, options([1,2,3]) , option)
 
 
 
@@ -83,4 +87,5 @@ import time
 date =  (time.strftime("%d%m%Y_%H:%M_"))
 
 np.save( str(date) +'linear_cnmf' , {'last_results_performance':last_results_performance,
-                    'results_performance':results_performance,'options':arr})
+                    'results_performance':results_performance, 'results_performance_tunning': results_performance_tunning,
+                    'options_results_performance': options_results_performance,'options':arr})

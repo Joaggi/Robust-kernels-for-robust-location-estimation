@@ -1,0 +1,2 @@
+cd /home/jagallegom/Robustes/Abalone/KMeans/
+python kmeans_abaloneExperiment.m

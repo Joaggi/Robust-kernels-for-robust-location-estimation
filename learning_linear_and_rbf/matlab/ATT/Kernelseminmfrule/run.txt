@@ -1,0 +1,2 @@
+cd /home/jagallegom/Robustes/ATT/Kernelseminmfrule/
+matlab -r kernelseminmfrule_experimentATT.m

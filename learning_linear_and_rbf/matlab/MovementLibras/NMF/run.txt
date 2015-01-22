@@ -1,0 +1,5 @@
+cd /home/jagallegom/Robustes/MovementLibras/NMF/
+python nmf_Experiment.py
+
+cd /home/jagallegom/Robustes/MovementLibras/NMF/
+matlab -r nmf_experimentMovement.py

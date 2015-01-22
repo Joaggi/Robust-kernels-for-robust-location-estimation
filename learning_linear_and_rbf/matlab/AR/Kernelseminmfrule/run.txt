@@ -1,0 +1,2 @@
+cd /home/jagallegom/Robustes/AR/Kernelseminmfrule/
+matlab -r kernelseminmfrule_experimentAR.m

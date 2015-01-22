@@ -1,0 +1,2 @@
+cd /home/jagallegom/Robustes/Wineq/Kernelconvexnmflinear/
+matlab -r kernelconvexnmf_experimentWineq.m
