@@ -1,5 +1,0 @@
-cd /home/jagallegom/Robustes/jaffe/NMF/
-python nmf_Experiment.py
-
-cd /home/jagallegom/Robustes/jaffe/NMF/
-matlab -r nmf_experimentJaffe.m

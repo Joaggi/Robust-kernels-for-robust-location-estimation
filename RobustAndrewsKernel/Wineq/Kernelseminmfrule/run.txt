@@ -1,2 +1,0 @@
-cd /home/jagallegom/Robustes/Wineq/Kernelseminmfrule/
-matlab -r kernelseminmfrule_experimentWineq.m

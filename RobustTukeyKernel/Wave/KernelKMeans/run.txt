@@ -1,5 +1,0 @@
-cd /home/jagallegom/Robustes/BalanceScale/KernelKMeans/
-python kernelkmeans_bsExperiment.py
-
-cd /home/jagallegom/Robustes/BalanceScale/KernelKMeans/
-matlab -r kkmeansmatlab_experimentBalance.m

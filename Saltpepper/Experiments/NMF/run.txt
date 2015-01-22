@@ -1,5 +1,0 @@
-cd /home/jagallegom/Robustes/Abalone/NMF/
-python nmf_abaloneExperiment.py
-
-cd /home/jagallegom/Robustes/Abalone/NMF/
-python nmf_abaloneExperiment.py

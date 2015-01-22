@@ -1,2 +1,0 @@
-cd /home/jagallegom/Robustes/ATT/Kernelseminmfnnlslinear/
-matlab -r kernelseminmfnnls_experimentATT.m

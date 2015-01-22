@@ -1,5 +1,0 @@
-cd /home/jagallegom/Robustes/Abalone/KernelKMeans/
-python kkmeansmatlab_experimentAbalone.m
-
-cd /home/jagallegom/Robustes/Abalone/KernelKMeans/
-matlab -r kkmeansmatlab_experimentAbalone.m
