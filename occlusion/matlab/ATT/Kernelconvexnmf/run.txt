@@ -1,2 +1,0 @@
-cd /home/jagallegom/Machine-Learning/Occlusion/ATT/Kernelconvexnmf/
-matlab -r kernelconvexnmf_experimentATT.m

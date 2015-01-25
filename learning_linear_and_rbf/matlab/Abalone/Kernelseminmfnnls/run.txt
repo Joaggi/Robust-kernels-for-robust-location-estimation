@@ -1,2 +1,0 @@
-cd /home/jagallegom/Robustes/Abalone/kernelseminmfnnls/
-matlab -r kernelseminmfnnls_experimentAbalone.m

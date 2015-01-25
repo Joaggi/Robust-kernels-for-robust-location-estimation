@@ -1,2 +1,0 @@
-cd /home/jagallegom/Robustes/BalanceScale/RMNMF/
-matlab -r rmnfm_experimentBS.m

@@ -1,2 +1,0 @@
-cd /home/jagallegom/Robustes/AR/Kernelseminmfnnls/
-matlab -r kernelseminmfnnls_experimentAR.m

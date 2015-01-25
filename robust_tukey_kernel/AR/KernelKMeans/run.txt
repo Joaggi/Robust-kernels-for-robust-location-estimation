@@ -1,5 +1,0 @@
-cd /home/jagallegom/Robustes/AR/KernelKMeans/
-python kernelkmeans_arExperiment.py
-
-cd /home/jagallegom/Robustes/AR/KernelKMeans/
-matlab -r kkmeansmatlab_experimentAR.m

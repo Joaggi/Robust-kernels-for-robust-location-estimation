@@ -1,2 +1,0 @@
-cd /home/jagallegom/Robustes/MovementLibras/RMNMF/
-matlab -r rmnfm_experimentML.m
