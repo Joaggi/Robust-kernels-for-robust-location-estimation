@@ -1,0 +1,12 @@
+current_path = '../../../../'
+
+
+addpath( current_path + 'algorithms/matlab');
+addpath(current_path+ 'learning_linear_and_rbf/matlab/experiment/Kernelconvexnmf');
+
+kernelconvexnmf_experiment('learning_linear_and_rbf/att','att','att',[1],date)
+
+% addpath '/home/jagallegom/Algorithms/Matlab';
+% addpath '/home/jagallegom/Robustes/Experiments/Kernelconvexnmf';
+% % %
+% kernelconvexnmf_experiment('/home/jagallegom/Robustes/ATT','att','att_labels')

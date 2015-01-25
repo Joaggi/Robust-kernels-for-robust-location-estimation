@@ -1,0 +1,2 @@
+cd /home/jagallegom/Robustes/Abalone/RMNMF/
+matlab -r rmnfm_experimentAbalone.m

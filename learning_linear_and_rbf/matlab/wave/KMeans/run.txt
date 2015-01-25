@@ -1,0 +1,2 @@
+cd /home/jagallegom/Robustes/BalanceScale/KernelKMeans/
+python kernelkmeans_bsExperiment.py

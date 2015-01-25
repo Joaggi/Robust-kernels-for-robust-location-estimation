@@ -1,0 +1,2 @@
+cd /home/jagallegom/Robustes/Abalone/Kernelconvexnmflinear/
+matlab -r kernelconvexnmf_experimentAbalone.m
