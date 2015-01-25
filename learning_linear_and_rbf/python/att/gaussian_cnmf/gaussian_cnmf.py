@@ -19,7 +19,7 @@ print data
 k = np.unique(labels).size
 
 #data = normalize_by_range(data, axis=0)
-vect_to_prove = [x**2 for x in np.arange(-20, 20)]
+vect_to_prove = [2**x for x in np.arange(-20, 20)]
 vect = generate_logarithm_vector_kernel(data, vect_to_prove, percentage=0.5)
 
 dt = [('key', 'S30'), ('value', 'S30')]
@@ -78,7 +78,7 @@ options_results_performance, results_performance = tunning_parameter_unsupervise
 
 import time
 ## dd/mm/yyyy format
-date = (time.strftime("%d%m%Y_%H:%M_"))
+date = (time.strftime("%d%m%Y_%H-%M_"))
 
 np.save(str(date) + 'linear_cnmf', {'results_performance': results_performance,
                     'options_results_performance': options_results_performance, 'options': arr})

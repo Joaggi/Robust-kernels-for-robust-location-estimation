@@ -1,0 +1,2 @@
+cd /home/jagallegom/Robustes/BalanceScale/Kernelseminmfnnls/
+matlab -r kernelseminmfnnls_experimentBalance.m

@@ -1,0 +1,2 @@
+cd /home/jagallegom/Robustes/Wineq/KMeans/
+python kmeans_Experiment.py
