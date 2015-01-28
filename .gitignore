@@ -1,3 +1,6 @@
+# Matlab storage files
+*.mat
+
 # Windows image file caches
 Thumbs.db
 ehthumbs.db
