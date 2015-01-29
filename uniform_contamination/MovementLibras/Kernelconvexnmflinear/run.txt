@@ -1,2 +1,0 @@
-cd /home/jagallegom/Robustes/MovementLibras/Kernelconvexnmflinear/
-matlab -r kernelconvexnmf_experimentMovement.m

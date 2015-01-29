@@ -1,5 +1,0 @@
-cd /home/jagallegom/Robustes/Wineq/KernelKMeans/
-python kernelkmeans_Experiment.py
-
-cd /home/jagallegom/Robustes/Wineq/KernelKMeans/
-matlab -r kkmeansmatlab_experimentWineq.m

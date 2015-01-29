@@ -1,2 +1,0 @@
-cd /home/jagallegom/Robustes/jaffe/Kernelseminmfnnlslinear/
-matlab -r kernelseminmfnnls_experimentJaffe.m

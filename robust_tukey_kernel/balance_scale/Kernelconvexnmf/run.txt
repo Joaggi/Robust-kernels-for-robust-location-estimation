@@ -1,2 +1,0 @@
-cd /home/jagallegom/Robustes/BalanceScale/Kernelconvexnmf/
-matlab -r kernelconvexnmf_experimentBalance.m

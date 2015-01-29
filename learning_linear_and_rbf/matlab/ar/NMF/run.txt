@@ -1,5 +1,0 @@
-cd /home/jagallegom/Robustes/AR/NMF/
-python nmf_arExperiment.py
-
-cd /home/jagallegom/Robustes/AR/NMF/
-matlab -r nmf_experimentAR.m
