@@ -1,8 +1,10 @@
 function correct = kernelconvexnmf_experiment(filedata,dataset,datalabels,vect,nameresults)
+current_path = '../../../../';
 
-addpath '../../../Algorithms/Matlab';
-addpath '../../../Algorithms/Matlab/nmfv1_4';
-addpath '../../../Datasets';
+
+addpath(strcat(current_path, 'algorithms/matlab'));
+addpath(strcat(current_path, 'algorithms/matlab/nmfv1_4'));
+addpath(strcat(current_path, 'dataset'));
 
 if(nargin < 4)
     nameresults = 'results'

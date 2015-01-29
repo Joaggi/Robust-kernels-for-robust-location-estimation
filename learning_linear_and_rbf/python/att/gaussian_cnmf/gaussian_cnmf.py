@@ -12,7 +12,7 @@ from semantic_methods_toolkit.python.preprocess_data.normalize_by_range \
     import normalize_by_range
 
 
-data, labels = dataset_factory.dataset_factory('../../../../dataset/att.mat',
+data, labels = dataset_factory.dataset_factory('../../../../dataset/iris.mat',
                                                options={'data': 'data', 'labels': 'labels'})
 
 import numpy as np
@@ -23,8 +23,6 @@ k = np.unique(labels).size
 #data = normalize_by_range(data, axis=0)
 vect_to_prove = [2**x for x in np.arange(-20, 20)]
 vector = generate_logarithm_vector_kernel(data, vect_to_prove, percentage=0.5)
-
-vector = [2**8]
 
 dt = [('key', 'S100'), ('value', 'S100')]
 arr = np.zeros((10,), dtype=dt)

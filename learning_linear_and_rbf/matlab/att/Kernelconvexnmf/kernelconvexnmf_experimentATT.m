@@ -1,11 +1,7 @@
+current_path = '../../../../';
 
 
-addpath 'G:/Dropbox/Universidad/Machine Learning/Algorithms/Matlab';
-addpath 'G:/Dropbox/Universidad/Machine Learning/Robustes/Experiments/Kernelconvexnmf';
+addpath(strcat(current_path, 'algorithms/matlab'));
+addpath(strcat(current_path, 'learning_linear_and_rbf/matlab/experiments/Kernelconvexnmf'));
 
-kernelconvexnmf_experiment('G:/Dropbox/Universidad/Machine Learning/Robustes/ATT','att','att_labels','Experimento 16102014')
-
-% addpath '/home/jagallegom/Algorithms/Matlab';
-% addpath '/home/jagallegom/Robustes/Experiments/Kernelconvexnmf';
-% % %
-% kernelconvexnmf_experiment('/home/jagallegom/Robustes/ATT','att','att_labels')
+kernelconvexnmf_experiment(strcat(current_path, 'learning_linear_and_rbf/matlab/att'),'att','att',[1],date)
