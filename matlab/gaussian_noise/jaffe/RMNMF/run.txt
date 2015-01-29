@@ -1,0 +1,2 @@
+cd /home/jagallegom/Robustes/jaffe/RMNMF/
+matlab -r rmnfm_experimentBS.m

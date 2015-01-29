@@ -1,0 +1,5 @@
+cd /home/jagallegom/Robustes/BalanceScale/NMF/
+python nmf_bsExperiment.py
+
+cd /home/jagallegom/Robustes/BalanceScale/NMF/
+matlab -r nmf_experimentBalance.m

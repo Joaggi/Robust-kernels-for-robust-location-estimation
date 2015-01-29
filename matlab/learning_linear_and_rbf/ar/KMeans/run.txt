@@ -1,0 +1,2 @@
+cd /home/jagallegom/Robustes/AR/KMeans/
+python kmeans_arExperiment.py

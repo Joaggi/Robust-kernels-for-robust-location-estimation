@@ -1,0 +1,5 @@
+cd /home/jagallegom/Robustes/MovementLibras/KernelKMeans/
+python kernelkmeans_Experiment.py
+
+cd /home/jagallegom/Robustes/MovementLibras/KernelKMeans/
+matlab -r kkmeansmatlab_experimentMovement.m

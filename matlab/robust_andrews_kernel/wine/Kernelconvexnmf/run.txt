@@ -1,0 +1,2 @@
+cd /home/jagallegom/Robustes/jaffe/Kernelconvexnmf/
+matlab -r kernelconvexnmf_experimentJaffe.m

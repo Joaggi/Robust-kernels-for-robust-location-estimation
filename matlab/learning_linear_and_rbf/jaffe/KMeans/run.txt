@@ -1,0 +1,2 @@
+cd /home/jagallegom/Robustes/jaffe/KMeans/
+python kmeans_Experiment.py
