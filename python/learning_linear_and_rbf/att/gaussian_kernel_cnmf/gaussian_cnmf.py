@@ -35,9 +35,9 @@ def gaussian_cnmf():
     arr[0]['key'] = 'k'
     arr[1]['value'] = "iter: " + str(3000)
     arr[1]['key'] = 'termination_criterion'
-    arr[2]['value'] = 'random'
+    arr[2]['value'] = 'kkmeans'
     arr[2]['key'] = 'initialization'
-    arr[3]['value'] = '15'
+    arr[3]['value'] = '3'
     arr[3]['key'] = 'epocs'
     arr[4]['value'] = '1'
     arr[4]['key'] = 'clustering_accuracy'

@@ -18,7 +18,7 @@ def gaussian_cnmf():
 
     os.chdir(os.path.dirname(os.path.realpath(__file__)))
 
-    data, labels = dataset_factory.dataset_factory('../../../../dataset/abalone.mat',
+    data, labels = dataset_factory.dataset_factory('../../../../dataset/glass.mat',
         options={'data': 'data', 'labels': 'labels'})
 
     print data
