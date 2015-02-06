@@ -7,7 +7,7 @@ function K=computeKernelMatrix(A,B,option)
 % option.param
 % K: the kernel matrix
 % Yifeng Li, September 03, 2011
-
+import nmf.*
 switch option.kernel
     case 'rbf'
         if isempty(option.param)

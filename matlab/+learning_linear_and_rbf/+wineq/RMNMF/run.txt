@@ -1,2 +1,0 @@
-cd /home/jagallegom/Robustes/Wineq/RMNMF/
-matlab -r rmnfm_experimentWQ.m

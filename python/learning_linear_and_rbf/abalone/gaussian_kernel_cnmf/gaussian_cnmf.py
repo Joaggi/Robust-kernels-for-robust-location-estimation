@@ -24,7 +24,7 @@ def gaussian_cnmf():
     print data
     k = np.unique(labels).size
 
-    data = normalize_by_range(data, axis=0)
+    #data = normalize_by_range(data, axis=0)
     vect_to_prove = [2**x for x in np.arange(-20, 25)]
     vector = generate_logarithm_vector_kernel(data, vect_to_prove, percentage=0.5)
 
@@ -33,11 +33,11 @@ def gaussian_cnmf():
 
     arr[0]['value'] = str(k)
     arr[0]['key'] = 'k'
-    arr[1]['value'] = "iter: " + str(3000)
+    arr[1]['value'] = "iter: " + str(150)
     arr[1]['key'] = 'termination_criterion'
     arr[2]['value'] = 'random'
     arr[2]['key'] = 'initialization'
-    arr[3]['value'] = '15'
+    arr[3]['value'] = '1'
     arr[3]['key'] = 'epocs'
     arr[4]['value'] = '1'
     arr[4]['key'] = 'clustering_accuracy'

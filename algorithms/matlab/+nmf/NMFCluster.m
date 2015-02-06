@@ -1,4 +1,6 @@
 function [indCluster,Xout,Aout,Yout,numIter,tElapsed,finalResidual]=NMFCluster(X,k,option)
+import utils.*
+import nmf.*
 % NMF based clustering
 % Usage:
 % [indCluster,numIter,tElapsed,finalResidual]=NMFCluster(X) % in this case, X is coefficient matrix obtained by a NMF outside this function

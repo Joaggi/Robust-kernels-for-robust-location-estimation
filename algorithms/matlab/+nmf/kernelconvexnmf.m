@@ -1,5 +1,5 @@
 function [Ak,A,Y,numIter,tElapsed,finalResidual]=kernelconvexnmf(X,k,option)
-import nmf.*
+
 % Kernel Convex-NMF based on update rules: k(X)=k(X)AY, s.t. A,Y>0.  Ak=kernel(X,X)
 % Definition:
 %     [Ak,A,Y,numIter,tElapsed,finalResidual]=kernelnmfrule(X,k)
@@ -60,6 +60,8 @@ import nmf.*
 % li11112c@uwindsor.ca; yifeng.li.cn@gmail.com
 % May 01, 2011
 %%%%
+import nmf.*
+
 
 tStart=tic;
 optionDefault.kernel='rbf';
@@ -131,19 +133,31 @@ switch option.initialization
         D=diag(1./sum(H));
         W=(H+0.2)*D;
     case 'random'
-%         G=rand(c,k)+unifrnd(0,0.2,c,k);
-%         W=rand(c,k)+unifrnd(0,0.2,c,k);
-         G=rand(c,k);
-         W=rand(c,k);
+         if option.random == 1
+            G=rand(c,k)+unifrnd(0,0.2,c,k);
+            W=rand(c,k)+unifrnd(0,0.2,c,k);
+         end
+         if option.random == 2
+            G=rand(c,k);
+            W=rand(c,k);
+         end
     case 'kkmeans'
         addpath('../')
         [inx,~] = knkmeans(Ak, k);
         H=(inx(:)*ones(1,k)-ones(c,1)*cumsum(ones(1,k)))==0; % obtain logical matrix [1,0,0;1,0,0;0,1,0;0,1,0;1,0,0;0,0,1;...]
-%         G=H+unifrnd(0,0.2,c,k);
-        G=H+0.2;
+        if option.random == 1
+            G=H+unifrnd(0,0.2,c,k);
+        end
+        if option.random == 2
+            G=H+0.2;
+        end 
         D=diag(1./sum(H));
-        W=(H+0.2)*D;
-%         W=(H+unifrnd(0,0.2,c,k))*D;
+        if option.random == 1
+            W=(H+unifrnd(0,0.2,c,k))*D;
+        end
+        if option.random == 2
+            W=(H+0.2)*D;
+        end
     case 'deterministic'
          G=ones(c,k)*0.2;
          W=ones(c,k)*0.2;        

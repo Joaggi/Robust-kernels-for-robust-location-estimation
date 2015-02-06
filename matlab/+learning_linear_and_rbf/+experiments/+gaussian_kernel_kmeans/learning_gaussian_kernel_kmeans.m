@@ -12,19 +12,25 @@ function correct = learning_gaussian_kernel_kmeans(options)
     data = eval(options.dataset.dataset);
     labels = eval(options.dataset.labels);
     
-    nu = randsample(size(data,1),2000)
+    %nu = randsample(size(data,1),2000)
 
-    data = data(nu,:);
-    labels = labels(nu,:);
+    %data = data(nu,:);
+    %labels = labels(nu,:);
 
     options.k = length(unique(labels));
     X = data;
-    % X= L1norm(data);
-    % X = X'
-    % X= normalizeByRange(data,1);
+    
+    if strcmp(options.preprocessing,'normalize_by_range')
+        X= L1norm(data);
+    end
+    if strcmp(options.preprocessing,'l1_norm')
+        X= normalizeByRange(data,1);
+    end
+    if strcmp(options.preprocessing,'l2_norm')
+        X= normalizeByRange(data,1);
+    end
 
-    options.vect = generate_logarithm_vector_kernel(X, options.vect, options.algorithm ...
-        , 0.5)
+    options.vect = generate_logarithm_vector_kernel(X, options.vect, options.algorithm, 0.5)
 
     cont = 1
 
@@ -55,7 +61,7 @@ function correct = learning_gaussian_kernel_kmeans(options)
                 toc
                 aux2 = 1;
                 while length(unique(labels_pred)) ~= options.k
-                    labels_pred = kernelconvexnmfCluster(X',options.k,options.algorithm);
+                    [labels_pred,~] = knkmeans(K, options.k);
                     aux2 = aux2+1
                     if aux2 >options.epocs
                         break
@@ -66,7 +72,7 @@ function correct = learning_gaussian_kernel_kmeans(options)
                 clusteringAccuracyVec(cont) = result(1);
                 purityVec(cont) = result(3);
                 nmiVec(cont) = result(2);
-            cont = cont + 1
+            	cont = cont + 1
         end
         purityMeanVec(l) = mean(purityVec(aux:cont-1));
         clusteringAccuracyMeanVec(l) = mean(clusteringAccuracyVec(aux:cont-1));

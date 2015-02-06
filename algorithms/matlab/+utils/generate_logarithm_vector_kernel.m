@@ -1,5 +1,4 @@
-function vect  = generate_logarithm_vector_kernel( ...
-        real_matrix, vect_to_prove, options, percentage)
+function vect  = generate_logarithm_vector_kernel(real_matrix, vect_to_prove, options, percentage)
     
     import nmf.computeKernelMatrix
 %Generate a vector with according to a kernel such that
@@ -16,13 +15,13 @@ function vect  = generate_logarithm_vector_kernel( ...
 %   """
     vect = [];
 
-    for(i = 1:length(vect_to_prove))
+    for i = 1:length(vect_to_prove)
         %# We have to correct this line to change with factory kernel
         options.param = vect_to_prove(i);
-        computed_kernel = computeKernelMatrix( ...
-            real_matrix',real_matrix',options);
-        if(sum(sum(computed_kernel > 0 & computed_kernel < 1)) ...
-                / numel(computed_kernel) > percentage);
+        computed_kernel = computeKernelMatrix( real_matrix',real_matrix',options);
+        if(sum(sum(computed_kernel > 0 & computed_kernel < 1)) / numel(computed_kernel) > percentage);
             vect = [vect vect_to_prove(i)];
         end
     end
+
+end

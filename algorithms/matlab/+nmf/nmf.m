@@ -51,6 +51,8 @@ function [A,Y,numIter,tElapsed,finalResidual]=nmf(X,k,option)
 % May 20, 2011
 %%%%
 
+import nmf.*
+
 if nargin<3
    option=[]; 
 end

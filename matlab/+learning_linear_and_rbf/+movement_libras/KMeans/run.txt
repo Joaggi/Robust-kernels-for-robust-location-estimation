@@ -1,2 +1,0 @@
-cd /home/jagallegom/Robustes/MovementLibras/KMeans/
-python kmeans_Experiment.py

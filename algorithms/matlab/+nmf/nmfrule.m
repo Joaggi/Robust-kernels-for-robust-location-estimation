@@ -55,6 +55,8 @@ function [A,Y,numIter,tElapsed,finalResidual]=nmfrule(X,k,option)
 % May 01, 2011
 %%%%
 
+import nmf.*
+
 tStart=tic;
 optionDefault.distance='ls';
 optionDefault.iter=1000;
@@ -69,11 +71,27 @@ end
 
 % iter: number of iterations
 [r,c]=size(X); % c is # of samples, r is # of features
-% Y=rand(k,c);
-inx=kmeans(X',k,'Emptyaction','singleton'); % k-mean clustering, get idx=[1,1,2,2,1,3,3,1,2,3]
-H=(inx*ones(1,k)-ones(c,1)*cumsum(ones(1,k)))==0; % obtain logical matrix [1,0,0;1,0,0;0,1,0;0,1,0;1,0,0;0,0,1;...]
-Y=H+unifrnd(0,0.2,c,k);
-Y =Y';
+
+switch option.initialization
+    case 'kmeans'
+        inx=kmeans(X',k,'Emptyaction','drop'); % k-mean clustering, get idx=[1,1,2,2,1,3,3,1,2,3]
+        H=(inx*ones(1,k)-ones(c,1)*cumsum(ones(1,k)))==0; % obtain logical matrix [1,0,0;1,0,0;0,1,0;0,1,0;1,0,0;0,0,1;...]
+        Y=H+unifrnd(0,0.2,c,k);
+        Y =Y';
+    case 'random'
+         Y=rand(k,c)+unifrnd(0,0.2,c,k);
+    case 'kkmeans'
+        addpath('../')
+        [inx,~] = knkmeans(Ak, k);
+        H=(inx(:)*ones(1,k)-ones(c,1)*cumsum(ones(1,k)))==0; % obtain logical matrix [1,0,0;1,0,0;0,1,0;0,1,0;1,0,0;0,0,1;...]
+%         G=H+unifrnd(0,0.2,c,k);
+        Y=H+0.2;
+        Y=Y';
+%         W=(H+unifrnd(0,0.2,c,k))*D;
+    case 'deterministic'
+         Y=ones(c,k)*0.2;    
+end
+
 
 % Y=ones(k,c)*0.1;
 
