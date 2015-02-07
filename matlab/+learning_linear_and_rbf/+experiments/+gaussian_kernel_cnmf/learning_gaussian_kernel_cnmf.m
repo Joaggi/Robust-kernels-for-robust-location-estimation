@@ -5,7 +5,7 @@ function correct = learning_gaussian_kernel_cnmf(options)
     import preprocessing_data.*
 
     c = clock;
-    nameresults = strcat(num2str(c(1)),num2str(c(2)),num2str(c(3)),'_',num2str(c(4))...
+    nameresults = strcat(options.algorithm.name, options.preprocessing, '_',num2str(c(1)),num2str(c(2)),num2str(c(3)),'_',num2str(c(4))...
         ,'-',num2str(c(5)));
 
     load(options.dataset.name,'-mat', options.dataset.dataset, options.dataset.labels)
@@ -122,7 +122,7 @@ function labels_pred = unsupervised_technique(X,k,option,epocs)
 			    end
 			end
 		case 'kmeans'
-        		labels_pred = kmeans(X,k,'Emptyaction','singleton');
+        		labels_pred = kmeans(X',k,'Emptyaction','singleton');
 			toc
 
 		case 'nmf'

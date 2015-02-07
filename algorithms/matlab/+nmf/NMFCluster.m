@@ -38,6 +38,7 @@ import nmf.*
 % li11112c@uwindsor.ca; yifeng.li.cn@gmail.com
 % May 21, 2011
 %%%%
+import nmf.*
 
 callNMF=true;
 if nargin==2
@@ -51,7 +52,7 @@ if nargin==1
     option=[];
 end
 optionDefault.reorder=true;
-optionDefault.algorithm='nmfnnls';
+optionDefault.algorithm='nmfrule';
 optionDefault.optionnmf=[];
 optionDefault.iterations=3000;
 option=mergeOption(option,optionDefault);

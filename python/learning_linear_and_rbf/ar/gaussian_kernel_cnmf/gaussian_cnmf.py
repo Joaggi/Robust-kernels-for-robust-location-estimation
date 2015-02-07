@@ -24,16 +24,16 @@ def gaussian_cnmf():
     print data
     k = np.unique(labels).size
 
-    #data = normalize_by_range(data, axis=0)
-    vect_to_prove = [2**x for x in np.arange(-9, 10)]
+    data = normalize_by_range(data, axis=0)
+    vect_to_prove = [2**x for x in np.arange(-2, 2)]
     vector = generate_logarithm_vector_kernel(data, vect_to_prove, percentage=0.5)
 
     dt = [('key', 'S100'), ('value', 'S100')]
     arr = np.zeros((10,), dtype=dt)
-
+    iterations = 150
     arr[0]['value'] = str(k)
     arr[0]['key'] = 'k'
-    arr[1]['value'] = "iter: " + str(3000)
+    arr[1]['value'] = "iter: " + str(iterations)
     arr[1]['key'] = 'termination_criterion'
     arr[2]['value'] = 'random'
     arr[2]['key'] = 'initialization'
@@ -49,11 +49,13 @@ def gaussian_cnmf():
     arr[7]['key'] = 'param'
     arr[8]['value'] = str(vector)
     arr[8]['key'] = 'vect'
+    arr[9]['value'] = 'normalize_by_rangue'
+    arr[9]['key'] = 'preprocessing'
 
     def options(vect):
 
         option = {arr[0]['key']: int(arr[0]['value']),
-                  arr[1]['key']: {'iter': 3000},
+                  arr[1]['key']: {'iter': iterations},
                   arr[2]['key']: arr[2]['value'],
                   arr[3]['key']: int(arr[3]['value']),
                   arr[4]['key']: int(arr[4]['value']),
@@ -67,7 +69,7 @@ def gaussian_cnmf():
             yield option
 
     option = {arr[0]['key']: int(arr[0]['value']),
-              arr[1]['key']: {'iter': 3000},
+              arr[1]['key']: {'iter': iterations},
               arr[2]['key']: arr[2]['value'],
               arr[3]['key']: int(arr[3]['value']),
               arr[4]['key']: int(arr[4]['value']),
@@ -85,5 +87,5 @@ def gaussian_cnmf():
     ## dd/mm/yyyy format
     date = (time.strftime("%d%m%Y_%H-%M_"))
 
-    np.save(str(date) + 'linear_cnmf', {'results_performance': results_performance,
+    np.save('gaussian_kernel_cnmf' + arr[9]['value'] + arr[2]['value'] + str(date), {'results_performance': results_performance,
                         'best_results_performance': best_results_performance, 'options': arr})

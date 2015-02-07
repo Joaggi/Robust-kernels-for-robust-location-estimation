@@ -56,7 +56,7 @@ import nmf.*
 if nargin<3
    option=[]; 
 end
-optionDefault.algorithm='nmfnnls';
+optionDefault.algorithm='nmfrule';
 optionDefault.optionnmf=[];
 option=mergeOption(option,optionDefault);
 % if not non-negative data
