@@ -19,7 +19,7 @@ options.algorithm.residual=1e-70;
 options.algorithm.tof=1e-70;
 options.algorithm.initialization='random';
 options.algorithm.random = 1
-options.algorithm.name = 'kernel_convex_nmf'
+options.algorithm.name = 'kernel_kmeans'
 
 options.preprocessing = 'normalize_by_range'
 
@@ -47,7 +47,7 @@ options.algorithm.residual=1e-70;
 options.algorithm.tof=1e-70;
 options.algorithm.initialization='random';
 options.algorithm.random = 1
-options.algorithm.name = 'kernel_convex_nmf'
+options.algorithm.name = 'kernel_kmeans'
 
 options.preprocessing = 'normalize_by_range'
 
@@ -74,7 +74,7 @@ options.algorithm.residual=1e-70;
 options.algorithm.tof=1e-70;
 options.algorithm.initialization='random';
 options.algorithm.random = 1
-options.algorithm.name = 'kernel_convex_nmf'
+options.algorithm.name = 'kernel_kmeans'
 
 options.preprocessing = 'normalize_by_range'
 
@@ -101,7 +101,7 @@ options.algorithm.residual=1e-70;
 options.algorithm.tof=1e-70;
 options.algorithm.initialization='random';
 options.algorithm.random = 1
-options.algorithm.name = 'kernel_convex_nmf'
+options.algorithm.name = 'kernel_kmeans'
 
 options.preprocessing = 'normalize_by_range'
 
@@ -128,7 +128,7 @@ options.algorithm.residual=1e-70;
 options.algorithm.tof=1e-70;
 options.algorithm.initialization='random';
 options.algorithm.random = 1
-options.algorithm.name = 'kernel_convex_nmf'
+options.algorithm.name = 'kernel_kmeans'
 
 options.preprocessing = 'normalize_by_range'
 
@@ -155,7 +155,7 @@ options.algorithm.residual=1e-70;
 options.algorithm.tof=1e-70;
 options.algorithm.initialization='random';
 options.algorithm.random = 1
-options.algorithm.name = 'kernel_convex_nmf'
+options.algorithm.name = 'kernel_kmeans'
 
 options.preprocessing = 'normalize_by_range'
 
@@ -166,6 +166,7 @@ addpath('/home/jagallegom/Machine-Learning/dataset/')
 addpath('/home/jagallegom/Machine-Learning/matlab/')
 
 import learning_linear_and_rbf.experiments.gaussian_kernel_cnmf.learning_gaussian_kernel_cnmf
+
 
 options.vect = 2.^(-2:2);
 options.dataset.name= 'mnist_2k'
@@ -181,7 +182,7 @@ options.algorithm.residual=1e-70;
 options.algorithm.tof=1e-70;
 options.algorithm.initialization='random';
 options.algorithm.random = 1
-options.algorithm.name = 'kernel_convex_nmf'
+options.algorithm.name = 'kernel_kmeans'
 
 options.preprocessing = 'normalize_by_range'
 
@@ -209,7 +210,7 @@ options.algorithm.residual=1e-70;
 options.algorithm.tof=1e-70;
 options.algorithm.initialization='random';
 options.algorithm.random = 1
-options.algorithm.name = 'kernel_convex_nmf'
+options.algorithm.name = 'kernel_kmeans'
 
 options.preprocessing = 'normalize_by_range'
 

@@ -5,7 +5,7 @@ function correct = learning_gaussian_kernel_cnmf(options)
     import preprocessing_data.*
 
     c = clock;
-    nameresults = strcat(options.algorithm.name, options.preprocessing, '_',num2str(c(1)),num2str(c(2)),num2str(c(3)),'_',num2str(c(4))...
+    nameresults = strcat(options.dataset.name, '_', options.algorithm.name, '_', options.preprocessing, '_', num2str(c(1)), num2str(c(2)), num2str(c(3)),'_',num2str(c(4))...
         ,'-',num2str(c(5)));
 
     load(options.dataset.name,'-mat', options.dataset.dataset, options.dataset.labels)

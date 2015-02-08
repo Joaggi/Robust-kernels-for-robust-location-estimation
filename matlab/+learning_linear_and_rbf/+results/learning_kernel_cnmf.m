@@ -167,6 +167,7 @@ addpath('/home/jagallegom/Machine-Learning/matlab/')
 
 import learning_linear_and_rbf.experiments.gaussian_kernel_cnmf.learning_gaussian_kernel_cnmf
 
+
 options.vect = 2.^(-2:2);
 options.dataset.name= 'mnist_2k'
 options.dataset.dataset= 'data_train_2000'

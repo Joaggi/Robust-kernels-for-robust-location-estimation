@@ -167,6 +167,11 @@ addpath('/home/jagallegom/Machine-Learning/matlab/')
 
 import learning_linear_and_rbf.experiments.gaussian_kernel_cnmf.learning_gaussian_kernel_cnmf
 
+<<<<<<< HEAD
+options.vect = 2.^(0);
+options.dataset.name= 'att'
+=======
+
 options.vect = 2.^(-2:2);
 options.dataset.name= 'mnist_2k'
 options.dataset.dataset= 'data_train_2000'
@@ -197,6 +202,7 @@ import learning_linear_and_rbf.experiments.gaussian_kernel_cnmf.learning_gaussia
 
 options.vect = 2.^(-2:2);
 options.dataset.name= 'abalone'
+>>>>>>> 468156b030f01a8f53af65bb881e3b2931899693
 options.dataset.dataset= 'data'
 options.dataset.labels= 'labels'
 
