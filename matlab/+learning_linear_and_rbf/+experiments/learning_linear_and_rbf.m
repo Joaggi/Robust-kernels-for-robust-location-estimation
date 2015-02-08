@@ -5,7 +5,7 @@ function correct = learning_gaussian_kernel_cnmf(options)
     import preprocessing_data.*
 
     c = clock;
-    nameresults = strcat(num2str(c(1)),num2str(c(2)),num2str(c(3)),'_',num2str(c(4))...
+    nameresults = strcat(options.algorithm.name, options.preprocessing, '_',num2str(c(1)),num2str(c(2)),num2str(c(3)),'_',num2str(c(4))...
         ,'-',num2str(c(5)));
 
     load(options.dataset.name,'-mat', options.dataset.dataset, options.dataset.labels)
@@ -31,7 +31,7 @@ function correct = learning_gaussian_kernel_cnmf(options)
         X= L2norm(data,1);
     end
 
-    if strcat(options.algorithm.name,'kernel_convex_nmf') | strcat(options.algorithm.name,'kernel_kmeans')
+    if strcmp(options.algorithm.name,'kernel_convex_nmf') | strcmp(options.algorithm.name,'kernel_kmeans')
         response = generate_logarithm_vector_kernel(X, options.vect, options.algorithm, 0.5)
         options.vect = [response]
     end
@@ -85,7 +85,7 @@ function labels_pred = unsupervised_technique(X,k,option,epocs)
     import nmf.*
     import utils.*
     import preprocessing_data.*
-        tic
+    tic
 	switch option.name 
 		case 'kernel_convex_nmf'
         		labels_pred = kernelconvexnmfCluster(X,k,option);
@@ -110,19 +110,19 @@ function labels_pred = unsupervised_technique(X,k,option,epocs)
 			    end
 			end
 		case 'kernel_kmeans'
-            K = kernelRBF(X',X',options.vect(l));
-            labels_pred = knkmeans(X,k,option);
+            K = kernelRBF(X,X,option.param);
+            labels_pred = knkmeans(K,k);
 			toc
 			aux2 = 1;
 			while length(unique(labels_pred)) ~= k
-			    labels_pred = knkmeans(X,k,option);
+			    labels_pred = knkmeans(K,k);
 			    aux2 = aux2+1
 			    if aux2 >epocs
                     break
 			    end
 			end
 		case 'kmeans'
-        		labels_pred = kmeans(X,k,'Emptyaction','singleton');
+        		labels_pred = kmeans(X',k,'Emptyaction','singleton');
 			toc
 
 		case 'nmf'
@@ -140,6 +140,18 @@ function labels_pred = unsupervised_technique(X,k,option,epocs)
                     break
 			    end
             end
+        case 'affinity_propagation'
+            M = similarity_euclid(X); 
+            M= -M
+            k = length(unique(labels))
+            % Affinity Propagation clustering
+            nrun = 2000;     % max iteration times, default 2000
+            nconv = 100;      % convergence condition, default 50
+            lam = 0.80;      % damping factor, default 0.9
+            splot = 'noplot';
+            %splot = 'plot'; % observing a clustering process when it is on
+            [la,~,~,~,~,~,~] = apclusterK(M,k,0,nrun,nconv,lam,splot,-30,30,k-1,k+1)
+            [~, labels_pred] = ind2cluster(la)
     end
 end 
 

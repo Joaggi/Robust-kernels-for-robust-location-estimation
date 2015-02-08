@@ -1,7 +1,7 @@
 import learning_linear_and_rbf.experiments.gaussian_kernel_cnmf.learning_gaussian_kernel_cnmf
 
 options.vect = 2.^(0);
-options.dataset.name= 'abalone'
+options.dataset.name= 'att'
 options.dataset.dataset= 'data'
 options.dataset.labels= 'labels'
 

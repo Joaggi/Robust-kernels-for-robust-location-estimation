@@ -17,27 +17,27 @@ def gaussian_cnmf():
     print os.path.dirname(os.path.realpath(__file__))
 
     os.chdir(os.path.dirname(os.path.realpath(__file__)))
-
-    data, labels = dataset_factory.dataset_factory('../../../../dataset/ar.mat',
+    database_name = 'ar'
+    data, labels = dataset_factory.dataset_factory('../../../../dataset/' + database_name + '.mat',
         options={'data': 'data', 'labels': 'labels'})
 
     print data
     k = np.unique(labels).size
 
     data = normalize_by_range(data, axis=0)
-    vect_to_prove = [2**x for x in np.arange(-2, 2)]
+    vect_to_prove = [2**x for x in np.arange(0,1)]
     vector = generate_logarithm_vector_kernel(data, vect_to_prove, percentage=0.5)
 
     dt = [('key', 'S100'), ('value', 'S100')]
     arr = np.zeros((10,), dtype=dt)
-    iterations = 150
+    iterations = 3000
     arr[0]['value'] = str(k)
     arr[0]['key'] = 'k'
     arr[1]['value'] = "iter: " + str(iterations)
     arr[1]['key'] = 'termination_criterion'
     arr[2]['value'] = 'random'
     arr[2]['key'] = 'initialization'
-    arr[3]['value'] = '3'
+    arr[3]['value'] = '20'
     arr[3]['key'] = 'epocs'
     arr[4]['value'] = '1'
     arr[4]['key'] = 'clustering_accuracy'
@@ -87,5 +87,6 @@ def gaussian_cnmf():
     ## dd/mm/yyyy format
     date = (time.strftime("%d%m%Y_%H-%M_"))
 
-    np.save('gaussian_kernel_cnmf' + arr[9]['value'] + arr[2]['value'] + str(date), {'results_performance': results_performance,
+    np.save(database_name + _ +'gaussian_kernel_cnmf' + '_' + arr[9]['value'] + '_' + arr[2]['value'] 
+                        + str(date), {'results_performance': results_performance,
                         'best_results_performance': best_results_performance, 'options': arr})
