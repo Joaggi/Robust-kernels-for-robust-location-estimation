@@ -182,16 +182,16 @@ class KernelMetrics(object):
         for i in range(n_clusters):
             aux = 999999999999
             for j in range(n_clusters):
-                if np.abs(np.sum(mean_KMeans[i]-mean_KMeans_initial[j])) < aux:
-                    aux = np.abs(np.sum(mean_KMeans[i]-mean_KMeans_initial[j]))
+                if np.linalg.norm(mean_KMeans[i]-mean_KMeans_initial[j]) < aux:
+                    aux = np.linalg.norm(mean_KMeans[i]-mean_KMeans_initial[j])
             bias_kmeans[epoch] = aux + bias_kmeans[epoch]
     
     
         for i in range(n_clusters):
             aux = 999999999999
             for j in range(n_clusters):
-                if np.abs(np.sum(mean_KernelKMeans[i]-mean_KernelKMeans_initial[j])) < aux:
-                    aux = np.abs(np.sum(mean_KernelKMeans[i]-mean_KernelKMeans_initial[j]))
+                if np.linalg.norm(mean_KernelKMeans[i]-mean_KernelKMeans_initial[j]) < aux:
+                    aux = np.linalg.norm(mean_KernelKMeans[i]-mean_KernelKMeans_initial[j])
             bias_kernelkmeans[epoch] = aux+bias_kernelkmeans[epoch]
             
         return bias_kmeans, bias_kernelkmeans

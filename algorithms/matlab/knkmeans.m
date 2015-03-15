@@ -1,4 +1,4 @@
-function [label, energy] = knkmeans(K,init)
+function [label, energy] = knkmeans(K,k,option,X)
 % Perform kernel k-means clustering.
 %   K: kernel matrix
 %   init: k (1 x 1) or label (1 x n, 1<=label(i)<=k)
@@ -7,15 +7,21 @@ function [label, energy] = knkmeans(K,init)
 % Written by Michael Chen (sth4nth@gmail.com).
 n = size(K,1);
 K = double(K);
-if length(init) == 1
-    label = ceil(init*rand(1,n))';
-elseif size(init,1) == 1 && size(init,2) == n
-    label = init;
-else
-    error('ERROR: init is not valid.');
+
+switch option.initialization
+    case 'kmeans'
+        label=kmeans(X',k,'Emptyaction','drop'); % k-mean clustering, get idx=[1,1,2,2,1,3,3,1,2,3]
+    case 'random'
+        label = ceil(k*rand(1,n))';
+    case 'kkmeans'
+        label = ceil(k*rand(1,n))';
 end
+
+
+
 last = 0;
-while any(label(:) ~= last(:))
+contador = 0
+while contador <=10
     [u,~,label] = unique(label);   % remove empty clusters
     k = length(u);
     E = sparse(label,1:n,1,k,n,n);
@@ -24,6 +30,11 @@ while any(label(:) ~= last(:))
     Z = repmat(diag(T*E'),1,n)-2*T;
     last = label;
     [val, label] = min(Z,[],1);
+    if any(label(:) ~= last(:))
+        contador = 0;  
+    else
+        contador = contador+1;   
+    end
 end
 [~,~,label] = unique(label);   % remove empty clusters
 energy = sum(val)+trace(K);

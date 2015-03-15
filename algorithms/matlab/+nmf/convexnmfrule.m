@@ -47,6 +47,10 @@ function [A,Y,numIter,tElapsed,finalResidual]=convexnmfrule(X,k,option)
 % May 01, 2011
 %%%%
 
+import nmf.*
+import utils.*
+import preprocessing_data.*
+import dataset.*
 
 tStart=tic;
 optionDefault.iter=1000;
@@ -61,14 +65,45 @@ end
 Ak=X'*X;
 Ap=(abs(Ak)+Ak)./2;
 An=(abs(Ak)-Ak)./2;
-[r,c]=size(X); % c is # of samples, r is # of features
-% inx=kmeans(X',k); % k-mean clustering, get idx=[1,1,2,2,1,3,3,1,2,3]
-% H=(inx*ones(1,k)-ones(c,1)*cumsum(ones(1,k)))==0; % obtain logical matrix [1,0,0;1,0,0;0,1,0;0,1,0;1,0,0;0,0,1;...]
-% G=H+0.2;
-% D=diag(1./sum(H));
-% W=G*D;
-G=rand(c,k);
-W=G*diag(1./sum(G));
+
+switch option.initialization
+    case 'kmeans'
+        inx=kmeans(X',k,'Emptyaction','drop'); % k-mean clustering, get idx=[1,1,2,2,1,3,3,1,2,3]
+        H=(inx(:)*ones(1,k)-ones(c,1)*cumsum(ones(1,k)))==0; % obtain logical matrix [1,0,0;1,0,0;0,1,0;0,1,0;1,0,0;0,0,1;...]
+        G=H+0.2;
+        D=diag(1./sum(H));
+        W=(H+0.2)*D;
+    case 'random'
+         if option.random == 1
+            G=rand(c,k)+unifrnd(0,0.2,c,k);
+            W=rand(c,k)+unifrnd(0,0.2,c,k);
+         end
+         if option.random == 2
+            G=rand(c,k);
+            W=rand(c,k);
+         end
+    case 'kkmeans'
+        addpath('../')
+        [inx,~] = knkmeans(Ak,k,option,X);
+        H=(inx(:)*ones(1,k)-ones(c,1)*cumsum(ones(1,k)))==0; % obtain logical matrix [1,0,0;1,0,0;0,1,0;0,1,0;1,0,0;0,0,1;...]
+        if option.random == 1
+            G=H+unifrnd(0,0.2,c,k);
+        end
+        if option.random == 2
+            G=H+0.2;
+        end 
+        D=diag(1./sum(H));
+        if option.random == 1
+            W=(H+unifrnd(0,0.2,c,k))*D;
+        end
+        if option.random == 2
+            W=(H+0.2)*D;
+        end
+    case 'deterministic'
+         G=ones(c,k)*0.2;
+         W=ones(c,k)*0.2;        
+end
+
 XfitPrevious=Inf;
 
 for i=1:option.iter

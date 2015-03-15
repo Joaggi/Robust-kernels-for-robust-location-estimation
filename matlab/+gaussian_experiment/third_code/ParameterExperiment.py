@@ -13,7 +13,7 @@ def experiment(n_samples, n_outliers, n_clusters, n_features, n_experiment):
 
     X,y = gaussianExperiment.generate_data()
     X_contaminated = gaussianExperiment.generate_contamination()
-    gaussianExperiment.show_graph_3d(X,y,X_contaminated)
+    gaussianExperiment.show_graph_3d(X,y,X_contaminated,3)
     #gaussianExperiment.save_data()
     
 experiment(n_samples= 300 , n_outliers = 150 , n_clusters = 4 \

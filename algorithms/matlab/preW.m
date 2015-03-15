@@ -1,6 +1,5 @@
 function Z = preW(X, C, s, maxepocs)
-    [a I] = max(C);
-    clear a; 
+    [~,I] = max(C);
     Z = X(:,I); 
     while maxepocs>0
         K = gKernel(X,Z,s).*C;

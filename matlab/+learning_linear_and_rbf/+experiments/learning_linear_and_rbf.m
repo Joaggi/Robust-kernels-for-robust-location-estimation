@@ -1,12 +1,11 @@
-function correct = learning_gaussian_kernel_cnmf(options)
+function parameter = learning_linear_and_rbf(options)
 
     import nmf.*
     import utils.*
     import preprocessing_data.*
 
     c = clock;
-    nameresults = strcat(options.algorithm.name, options.preprocessing, '_',num2str(c(1)),num2str(c(2)),num2str(c(3)),'_',num2str(c(4))...
-        ,'-',num2str(c(5)));
+    nameresults = strcat(options.dataset.name, '_', options.algorithm.name,'_', options.preprocessing, '_',options.algorithm.kernel,'_learning_',num2str(c(1)),num2str(c(2)),num2str(c(3)),'_',num2str(c(4)),'_',num2str(c(5)),'.mat');
 
     load(options.dataset.name,'-mat', options.dataset.dataset, options.dataset.labels)
 
@@ -34,6 +33,10 @@ function correct = learning_gaussian_kernel_cnmf(options)
     if strcmp(options.algorithm.name,'kernel_convex_nmf') | strcmp(options.algorithm.name,'kernel_kmeans')
         response = generate_logarithm_vector_kernel(X, options.vect, options.algorithm, 0.5)
         options.vect = [response]
+    end
+    
+    if strcmp(options.algorithm.name,'rmnmf') 
+        options.algorithm.labels = labels
     end
     
     cont = 1
@@ -78,7 +81,9 @@ function correct = learning_gaussian_kernel_cnmf(options)
         l=l+1
 
     end
-    save(nameresults, 'clusteringAccuracyVec','purityVec','nmiVec','purityMeanVec','clusteringAccuracyMeanVec','nmiMeanVec','labels_total','l','puritySdVec','clusteringAccuracySdVec','nmiSdVec')
+    [~,pos] = max(clusteringAccuracyMeanVec)
+    parameter = options.vect(pos)
+    save(nameresults, 'clusteringAccuracyVec','purityVec','nmiVec','purityMeanVec','clusteringAccuracyMeanVec','nmiMeanVec','labels_total','l','puritySdVec','clusteringAccuracySdVec','nmiSdVec','options')
 end
 
 function labels_pred = unsupervised_technique(X,k,option,epocs)
@@ -110,12 +115,12 @@ function labels_pred = unsupervised_technique(X,k,option,epocs)
 			    end
 			end
 		case 'kernel_kmeans'
-            K = kernelRBF(X,X,option.param);
-            labels_pred = knkmeans(K,k);
+            K = computeKernelMatrix(X,X,option);
+            labels_pred = knkmeans(K,k,option,X');
 			toc
 			aux2 = 1;
 			while length(unique(labels_pred)) ~= k
-			    labels_pred = knkmeans(K,k);
+			    labels_pred = knkmeans(K,k,option,X');
 			    aux2 = aux2+1
 			    if aux2 >epocs
                     break
@@ -130,11 +135,11 @@ function labels_pred = unsupervised_technique(X,k,option,epocs)
 			toc
 
 		case 'rmnmf'
-        		[labels_pred] = RMNMF(X,labels,k,10^-3,parameters(l,1), parameters(l,2));
+        		[labels_pred] = RMNMF(X,option.labels,k,10^-3,option.param, 1.05);
 			toc
 			aux2 = 1;
 			while length(unique(labels_pred)) ~= k
-			    [labels_pred] = RMNMF(X,labels,k,10^-3,parameters(l,1), parameters(l,2));
+			    [labels_pred] = RMNMF(X,option.labels,k,10^-3,option.param, 1.05);
 			    aux2 = aux2+1
 			    if aux2 >epocs
                     break

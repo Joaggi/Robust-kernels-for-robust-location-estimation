@@ -79,7 +79,7 @@ switch option.initialization
         Y=H+unifrnd(0,0.2,c,k);
         Y =Y';
     case 'random'
-         Y=rand(k,c)+unifrnd(0,0.2,c,k);
+         Y=rand(k,c)*1.2;
     case 'kkmeans'
         addpath('../')
         [inx,~] = knkmeans(Ak, k);

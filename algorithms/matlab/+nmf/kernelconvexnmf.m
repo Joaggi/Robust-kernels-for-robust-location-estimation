@@ -143,7 +143,7 @@ switch option.initialization
          end
     case 'kkmeans'
         addpath('../')
-        [inx,~] = knkmeans(Ak, k);
+        [inx,~] = knkmeans(Ak,k,option,X);
         H=(inx(:)*ones(1,k)-ones(c,1)*cumsum(ones(1,k)))==0; % obtain logical matrix [1,0,0;1,0,0;0,1,0;0,1,0;1,0,0;0,0,1;...]
         if option.random == 1
             G=H+unifrnd(0,0.2,c,k);
