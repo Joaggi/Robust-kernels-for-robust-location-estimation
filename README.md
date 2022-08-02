@@ -2,7 +2,7 @@
 
 <p>
   <a href="https://par.nsf.gov/servlets/purl/10284588"><img src="http://img.shields.io/badge/Paper-PDF-brightgreen.svg"></a>
-  <a href="https://github.com/Joaggi/Robust-kernels-for-robust-location-estimation/LICENSE">
+  <a href="https://github.com/Joaggi/Robust-kernels-for-robust-location-estimation/blob/master/LICENSE">
     <img src="https://img.shields.io/badge/License-Apache%202.0-blue.svg">
   </a>
 </p>
