@@ -1,5 +1,13 @@
 # Robust-kernels-for-robust-location-estimation
 
+<p>
+  <a href="https://par.nsf.gov/servlets/purl/10284588"><img src="http://img.shields.io/badge/Paper-PDF-brightgreen.svg"></a>
+  <a href="https://github.com/Joaggi/Robust-kernels-for-robust-location-estimation/LICENSE">
+    <img src="https://img.shields.io/badge/License-Apache%202.0-blue.svg">
+  </a>
+</p>
+
+
 Robust kernels for robust location estimation
 November 2020Neurocomputing 429(1) Follow journal
 DOI: 10.1016/j.neucom.2020.10.090
