@@ -1,4 +1,4 @@
-# Robust-kernels-for-robust-location-estimation
+# Robust Kernels for Robust Location Estimation
 
 <p>
   <a href="https://par.nsf.gov/servlets/purl/10284588"><img src="http://img.shields.io/badge/Paper-PDF-brightgreen.svg"></a>
