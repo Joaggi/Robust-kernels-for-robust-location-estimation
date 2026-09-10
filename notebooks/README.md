@@ -1,3 +1,3 @@
 # Notebooks
 
-Jupyter notebooks for robust kernals.
+Jupyter notebooks for robust kernels.
