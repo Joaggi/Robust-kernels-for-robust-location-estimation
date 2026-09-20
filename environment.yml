@@ -1,0 +1,10 @@
+name: robust-kernels-dev
+channels:
+  - conda-forge
+dependencies:
+  - python=3.11
+  - numpy
+  - scikit-learn
+  - pip
+  - pip:
+      - -e .
