@@ -14,7 +14,7 @@ def tukey_kernel(X, Y=None, c=None):
     """
     Compute the tukey kernel between X and Y::
 
-        K(x, y) = {1/12*(1-(||x-y||/c)**2)**3
+        K(x, y) = {1/2*(1-(||x-y||/c)**2)**3
                                             }
 
     for each pair of rows x in X and y in Y.
