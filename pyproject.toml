@@ -10,6 +10,7 @@ license = "Apache-2.0"
 dependencies = [
     "numpy",
     "scikit-learn",
+    "pytest"
 ]
 [build-system]
 requires = ["setuptools>=61.0"]
