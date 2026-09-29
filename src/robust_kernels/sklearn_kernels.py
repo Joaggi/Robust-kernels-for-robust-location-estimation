@@ -18,17 +18,6 @@ class _SchoenbergKernel(Kernel):
     x=y, so negating them gives a "distance-like" Phi that grows away from
     the diagonal -- the same role ||x-y||^2 plays in deriving the Gaussian
     kernel from the L2 loss.
-
-    By Schoenberg's theorem, if Phi is conditionally negative definite
-    (CND), then K_PD is positive definite for every gamma > 0. The paper
-    proves Huber and Cauchy are conditionally positive definite (Props. 9,
-    12), i.e. their negation is CND, so this construction is theoretically
-    justified for those two. Tukey and Andrews are not covered by that
-    guarantee (Tukey's PD-ness in the paper is argued differently, via
-    Wendland functions; Andrews is proven not CPD at all, Prop. 6) -- so
-    all four are still checked empirically rather than assumed to work.
-
-    Subclasses set ``base_kernel_func``.
     """
 
     base_kernel_func = None
