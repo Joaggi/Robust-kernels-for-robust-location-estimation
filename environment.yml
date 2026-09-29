@@ -8,7 +8,5 @@ dependencies:
   - pip
   - pip:
       - ipykernel
-      - keras
-      - torch
       - matplotlib
       - -e .
