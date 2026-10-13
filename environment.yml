@@ -7,4 +7,6 @@ dependencies:
   - scikit-learn
   - pip
   - pip:
+      - ipykernel
+      - matplotlib
       - -e .

@@ -29,7 +29,8 @@ $RECYCLE.BIN/
 .LSOverride
 
 # Icon must end with two \r
-Icon
+Icon
+
 
 # Thumbnails
 ._*
@@ -44,3 +45,12 @@ Icon
 Network Trash Folder
 Temporary Items
 .apdisk
+
+# Python-generated files
+__pycache__/
+*.py[cod]
+
+# Python packaging metadata and build output
+*.egg-info/
+build/
+dist/
